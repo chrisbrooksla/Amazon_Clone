@@ -1,9 +1,13 @@
 import React from "react";
 import "./Header.css";
 import SearchIcon from '@material-ui/icons/Search';
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
+import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import { useStateValue } from './StateProvider';
 
 function Header() {
+
+  const [{basket}] = useStateValue();
+
   return (
     <div className="header">
       <img
@@ -34,7 +38,7 @@ function Header() {
         <div className="header__optionBasket">
 
           <ShoppingBasketIcon />
-          <span className="header__optionLineTwo header_basketCount">0</span>
+          <span className="header__optionLineTwo header_basketCount">{basket.length}</span>
         </div>
       </div>
     </div>

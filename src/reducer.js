@@ -15,6 +15,25 @@ export const initialState = {
           ...state,
           basket: [...state.basket, action.item],
         };
+        case "REMOVE_FROM_BASKET":
+          // clone the basket
+          let newBasket = [...state.basket];
+
+         
+          const index = state.basket.findIndex((basketItem) => basketItem.id === action.id);
+
+          if (index >= 0) {
+             // check to see if product exists, remove it...
+            newBasket.splice(index, 1);
+          }else {
+            console.warn(
+              `Can't remove product(id: ${action.id}) as it is not in the basket`
+            )
+          }
+          return {
+            ...state, 
+            basket: newBasket,
+          }
       default:
         return state;
     }
